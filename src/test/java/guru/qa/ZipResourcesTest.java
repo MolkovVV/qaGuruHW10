@@ -2,6 +2,7 @@ package guru.qa;
 
 import com.codeborne.pdftest.PDF;
 import com.codeborne.xlstest.XLS;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.opencsv.CSVReader;
 import guru.qa.datautils.Pet;
@@ -119,13 +120,30 @@ public class ZipResourcesTest {
             @Tag("Major")
     })
 
-    @DisplayName("Валидация JSON Pet")
+    @DisplayName("Валидация JSON Pet GSON")
     @Test
-    public void checkPetJson() throws IOException, NullPointerException {
+    public void checkPetJsonGson() throws IOException, NullPointerException {
         Gson gson = new Gson();
         try (InputStream inputStream = CLASS_LOADER.getResourceAsStream("pet.json");
              InputStreamReader reader = new InputStreamReader(inputStream)) {
             Pet pet = gson.fromJson(reader, Pet.class);
+            Assertions.assertEquals(12345, pet.id, "id питомца не корректный");
+            Assertions.assertEquals(12345, pet.category.id, "id категории не корректный");
+            Assertions.assertEquals("cat", pet.category.name, "name категории не корректный");
+            Assertions.assertEquals("Jack", pet.name, "name питомца не корректный");
+            Assertions.assertEquals(2, pet.photoUrls.size(), "В массиве url отсутствуют некоторые эл-ты");
+            Assertions.assertEquals("pet", pet.tags.get(0).name, "В массиве tags отсутствует эл-т с name \"pet\"");
+            Assertions.assertEquals("HomePet", pet.tags.get(1).name, "В массиве tags отсутствует эл-т с name \"HomePet\"");
+        }
+    }
+
+    @DisplayName("Валидация JSON Pet Jackson")
+    @Test
+    public void checkPetJsonJackson() throws IOException, NullPointerException {
+        ObjectMapper mapper = new ObjectMapper();
+        try (InputStream inputStream = CLASS_LOADER.getResourceAsStream("pet.json");
+             InputStreamReader reader = new InputStreamReader(inputStream)) {
+            Pet pet = mapper.readValue(reader, Pet.class);
             Assertions.assertEquals(12345, pet.id, "id питомца не корректный");
             Assertions.assertEquals(12345, pet.category.id, "id категории не корректный");
             Assertions.assertEquals("cat", pet.category.name, "name категории не корректный");

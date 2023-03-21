@@ -33,7 +33,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     testImplementation 'com.codeborne:selenide:6.12.3'
-    testImplementation 'com.fasterxml.jackson.core:jackson-core:2.13.1'
+    testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
     testImplementation 'com.codeborne:xls-test:1.7.0'
     testImplementation 'com.opencsv:opencsv:3.7'
     testImplementation 'com.codeborne:pdf-test:1.8.1'
