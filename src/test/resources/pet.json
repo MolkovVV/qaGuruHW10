@@ -1,0 +1,23 @@
+{
+  "id": 12345,
+  "category": {
+    "id": 12345,
+    "name": "cat"
+  },
+  "name": "Jack",
+  "photoUrls": [
+    "https://s0.rbk.ru/v6_top_pics/resized/1200xH/media/img/6/67/756484737186676.jpg",
+    "https://s0.rbk.ru/v6_top_pics/resized/1200xH/media/img/6/67/756484737186676.jpg"
+  ],
+  "tags": [
+    {
+      "id": 0,
+      "name": "pet"
+    },
+    {
+      "id": 1,
+      "name": "HomePet"
+    }
+  ],
+  "status": "available"
+}
